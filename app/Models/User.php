@@ -59,4 +59,24 @@ class User extends Authenticatable implements PasskeyUser
             ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
             : $initials;
     }
+
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role && $this->isActive();
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('admin');
+    }
+
+    public function isTenantOperator(): bool
+    {
+        return $this->hasRole('tenant');
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === 'active';
+    }
 }
