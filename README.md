@@ -37,3 +37,11 @@ REVERB_SCHEME=http
 
 - Lalu jalankan php artisan reverb:install untuk id,key,dan secret
 - dan terkahir tinggal ulangin php artisan reverb:start
+
+# perintah reset yg aman untuk development
+
+| Perintah                           | Fungsi                                                            |
+| ---------------------------------- | ----------------------------------------------------------------- |
+| `php artisan migrate:reset`        | Membatalkan (**rollback**) semua migration                        |
+| `php artisan migrate:fresh`        | **Menghapus seluruh tabel**, lalu menjalankan migration dari awal |
+| `php artisan migrate:fresh --seed` | Menghapus seluruh tabel → migration ulang → jalankan seeder       |
