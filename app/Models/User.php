@@ -25,6 +25,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @property string|null $two_factor_recovery_codes
  * @property Carbon|null $two_factor_confirmed_at
  * @property string|null $remember_token
+ * @property string|null $role
+ * @property string $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
@@ -60,6 +62,10 @@ class User extends Authenticatable implements PasskeyUser
             : $initials;
     }
 
+    /**
+     * Apakah user memegang role tertentu. Kontrak role interim Modul 2
+     * (kolom `role`); diformalkan menjadi relasi pada Modul 4–5.
+     */
     public function hasRole(string $role): bool
     {
         return $this->role === $role && $this->isActive();

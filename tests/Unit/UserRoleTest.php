@@ -18,7 +18,7 @@ class UserRoleTest extends TestCase
         $this->assertFalse($u->isTenantOperator());
     }
 
-    public function test_suspended_user_holds_no_role() : void
+    public function test_suspended_user_holds_no_role(): void
     {
         $u = new User;
         $u->role = 'admin';

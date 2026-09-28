@@ -2,17 +2,26 @@
 
 namespace App\Modules\Payments;
 
-use Illuminate\Support\ServiceProvider;
+use App\Modules\ModuleServiceProvider;
 
-final class PaymentsServiceProvider extends ServiceProvider
+/**
+ * Modul: Payments (alias `payments`).
+ * Tanggung jawab: Kontrak PaymentGateway, adapter, webhook, settlement, split ledger, outbox (Modul 10-11).
+ *
+ * Titik perakitan modul: binding container di register(); route (routes/*.php), view
+ * (`payments::`) dan komponen Livewire (`<livewire:payments::...>`) dimuat oleh
+ * ModuleServiceProvider::boot(). Batas antarmodul ditegakkan lewat kontrak & event,
+ * bukan akses langsung tabel/controller modul lain.
+ */
+final class PaymentsServiceProvider extends ModuleServiceProvider
 {
     public function register(): void
     {
         // Binding kontrak -> implementasi ditambahkan saat modul diimplementasikan.
     }
 
-    public function boot(): void
+    protected function moduleAlias(): string
     {
-        //
+        return 'payments';
     }
 }

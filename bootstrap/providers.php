@@ -12,11 +12,11 @@ use App\Providers\FortifyServiceProvider;
 return [
     AppServiceProvider::class,
     FortifyServiceProvider::class,
-
+    // Modular monolith — satu provider per bounded context (Modul 2).
     AdminServiceProvider::class,
     CatalogServiceProvider::class,
-    KitchenServiceProvider::class,
     OrderingServiceProvider::class,
     PaymentsServiceProvider::class,
+    KitchenServiceProvider::class,
     ReportingServiceProvider::class,
 ];
