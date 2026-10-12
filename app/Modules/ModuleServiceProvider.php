@@ -47,6 +47,12 @@ abstract class ModuleServiceProvider extends ServiceProvider
      */
     protected function modulePath(): string
     {
+        if (str_starts_with(static::class, 'App\\Modules\\')) {
+            $segments = explode('\\', static::class);
+
+            return app_path('Modules/'.$segments[2]);
+        }
+
         return dirname((string) (new ReflectionClass($this))->getFileName());
     }
 }

@@ -8,5 +8,15 @@ use Illuminate\Support\Facades\Route;
  * Grup (middleware auth+verified+tenant/SetTenantContext + scopeBindings) didefinisikan tunggal di
  * PortalRoutes::tenant(); route fitur ditambahkan modul di app/Modules/{Modul}/routes/tenant.php.
  */
-Route::get('/dashboard', fn (Tenant $tenant) => view('tenant.dashboard', ['tenant' => $tenant]))
-    ->name('dashboard');
+Route::get('/dashboard', function (Tenant $tenant) {
+    $menus = $tenant->menus()
+        ->orderBy('name')
+        ->get(['id', 'tenant_id', 'name', 'base_price', 'stock_qty', 'is_available']);
+
+    $menuSummary = [
+        'total' => $menus->count(),
+        'available' => $menus->where('is_available', true)->count(),
+    ];
+
+    return view('tenant.dashboard', compact('tenant', 'menus', 'menuSummary'));
+})->name('dashboard');

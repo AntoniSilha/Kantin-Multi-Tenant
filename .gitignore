@@ -24,3 +24,10 @@ yarn-error.log
 /.zed
 .env.testing
 .DS_Store
+
+# Office lock/owner files
+~$*
+.~lock.*
+
+# Claude Code local settings (keep .claude/skills tracked)
+.claude/settings.local.json
